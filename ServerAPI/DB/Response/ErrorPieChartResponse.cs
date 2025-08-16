@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace ServerAPI.DB.Response
 {
-    public class ErrorPieChartResponse 
+    public class ErrorPieChartResponse
     {
         [Key]
         public int Id { get; set; }

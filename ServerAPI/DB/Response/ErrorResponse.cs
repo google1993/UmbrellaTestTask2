@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace ServerAPI.DB.Response
 {
@@ -13,6 +14,16 @@ namespace ServerAPI.DB.Response
         public string ErrorCallStack { get; set; } = String.Empty;
         public DateTime CreateTime { get; set; }
         public string? MacAddress { get; set; }
-        public virtual Dumps? Dump { get; set; }
+
+        public static Expression<Func<Errors, ErrorResponse>> ErrorResponseExpression =>
+            e => new ErrorResponse
+            {
+                Id = e.Id,
+                ErrorGUID = e.ErrorGUID,
+                ErrorMsg = e.ErrorMsg,
+                ErrorCallStack = e.ErrorCallStack,  
+                CreateTime = e.CreateTime,
+                MacAddress = e.MacAddress,
+            };
     }
 }
