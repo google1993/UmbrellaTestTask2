@@ -26,15 +26,25 @@ namespace ServerAPI.Controllers
 
                     u.EMail,
                 
-                    LicenseCount = _mainCtx.License
-                        .Count(l => l.User.Id == u.Id),
+                    //LicenseCount = _mainCtx.License
+                    //    .Count(l => l.User.Id == u.Id),
                 
                     LicenseKeysCount = _mainCtx.LicenseKey
                         .Count(k => k.License.User.Id == u.Id),
                 
                     Devices = _mainCtx.License
                         .Count(d => d.User.Id == u.Id),
-                
+
+                    Companies = (from l in _mainCtx.License
+                                 join ca in _mainCtx.UserCompanyActivation
+                                     on l.MacAddress equals ca.Mac
+                                 where l.User.Id == u.Id
+                                 select new
+                                 {
+                                     ca.CompanyName,
+                                     l.MacAddress
+                                 }).ToList(),
+
                     TotalPayments = _mainCtx.Payments
                         .Where(p => p.TgUsername == u.Login)
                         .Sum(p => (decimal?)p.Amount) ?? 0
@@ -51,8 +61,12 @@ namespace ServerAPI.Controllers
                 .Select(
                 l => new
                 {
-                    l.Id,
+                    // l.Id,
                     l.MacAddress,
+                    Company = _mainCtx.UserCompanyActivation
+                     .Where(ca => ca.Mac == l.MacAddress)
+                     .Select(ca => ca.CompanyName)
+                     .FirstOrDefault(),
                     l.CreatedDate,
                     l.ExpirationDate,
                     l.ApearDate
@@ -76,6 +90,15 @@ namespace ServerAPI.Controllers
             var authUsers = await _mainCtx.Users
                 .CountAsync();
 
+            var companies = await _mainCtx.UserCompanyActivation
+                .GroupBy(ca => ca.CompanyName)
+                .Select(g => new
+                {
+                    CompanyName = g.Key,
+                    DeviceCount = g.Select(ca => ca.Mac).Distinct().Count()
+                })
+                .ToListAsync();
+
             var activatedKeys = await _mainCtx.LicenseKey
                 .CountAsync(ak => ak.ActivatedDate != null);
 
@@ -88,6 +111,7 @@ namespace ServerAPI.Controllers
                 ActiveDevices = activeDevices,
                 FreeTrials = freeTrials,
                 AuthUsers = authUsers,
+                Companies = companies,
                 ActivatedKeys = activatedKeys,
                 TotalPayment = totalPayment
             };
@@ -108,15 +132,26 @@ namespace ServerAPI.Controllers
             var activeDevices = await _mainCtx.License
                 .CountAsync(ad => ad.CreatedDate <= endDate && ad.ExpirationDate >= startDate);
             
-            var freeTrials = await _mainCtx.License
+            var newFreeTrials = await _mainCtx.License
                 .CountAsync(ft => ft.User == null && (ft.ApearDate >= startDate && ft.ApearDate <= endDate));
             
-            var authUsers = await _mainCtx.License
+            var newAuthUsers = await _mainCtx.License
                 .Where(l => l.User != null && l.ApearDate >= startDate && l.ApearDate <= endDate)
                 .Select(l => l.User)
                 .Distinct()             
                 .CountAsync();
-            
+
+            var newCompanies = (from l in _mainCtx.License
+                             join ca in _mainCtx.UserCompanyActivation
+                                 on l.MacAddress equals ca.Mac
+                             where l.ApearDate >= startDate && l.ApearDate <= endDate
+                             group l by ca.CompanyName into g
+                             select new
+                             {
+                                 CompanyName = g.Key,
+                                 DeviceCount = g.Select(l => l.MacAddress).Distinct().Count()
+                             }).ToList();
+
             var activatedKeys = await _mainCtx.LicenseKey
                 .CountAsync(ak => ak.ActivatedDate >= startDate && ak.ActivatedDate <= endDate);
 
@@ -126,10 +161,11 @@ namespace ServerAPI.Controllers
 
             var mainStats = new
             {
-                DeviceCount = newDeviceCount,
+                NewDeviceCount = newDeviceCount,
                 ActiveDevices = activeDevices,
-                FreeTrials = freeTrials,
-                AuthUsers = authUsers,
+                NewFreeTrials = newFreeTrials,
+                NewAuthUsers = newAuthUsers,
+                NewCompanies = newCompanies,
                 ActivatedKeys = activatedKeys,
                 TotalPayment = totalPayment
             };
