@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "ServerAPI\\Controllers\\UserController.cs",
               "ToolTip": "D:\\Dev\\Projects\\UmbrellaTestTask2\\ServerAPI\\Controllers\\UserController.cs",
               "RelativeToolTip": "ServerAPI\\Controllers\\UserController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAUwEQAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAiwGIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-15T07:24:55.521Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "ServerAPI\\Controllers\\ReportController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T07:06:29.041Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T07:06:29.041Z"
             },
             {
               "$type": "Document",
@@ -92,8 +91,7 @@
               "RelativeToolTip": "ServerAPI\\DB\\UserCompanyActivation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-15T06:59:32.987Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T06:59:32.987Z"
             }
           ]
         },

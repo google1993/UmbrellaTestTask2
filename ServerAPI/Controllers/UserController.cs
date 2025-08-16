@@ -99,6 +99,13 @@ namespace ServerAPI.Controllers
                 })
                 .ToListAsync();
 
+            var today = DateTime.Today;
+            var month = new DateTime(today.Year, today.Month, 1);
+            var first = month.AddMonths(-1);
+
+            var outdatedLicenses = await _mainCtx.License
+                .CountAsync(oft => oft.ExpirationDate <= month);
+
             var activatedKeys = await _mainCtx.LicenseKey
                 .CountAsync(ak => ak.ActivatedDate != null);
 
@@ -112,6 +119,7 @@ namespace ServerAPI.Controllers
                 FreeTrials = freeTrials,
                 AuthUsers = authUsers,
                 Companies = companies,
+                OutdatedLicenses = outdatedLicenses,
                 ActivatedKeys = activatedKeys,
                 TotalPayment = totalPayment
             };
@@ -141,16 +149,26 @@ namespace ServerAPI.Controllers
                 .Distinct()             
                 .CountAsync();
 
-            var newCompanies = (from l in _mainCtx.License
-                             join ca in _mainCtx.UserCompanyActivation
-                                 on l.MacAddress equals ca.Mac
-                             where l.ApearDate >= startDate && l.ApearDate <= endDate
-                             group l by ca.CompanyName into g
-                             select new
-                             {
-                                 CompanyName = g.Key,
-                                 DeviceCount = g.Select(l => l.MacAddress).Distinct().Count()
-                             }).ToList();
+            var newCompanies = _mainCtx.License
+                .Join(_mainCtx.UserCompanyActivation,
+                      l => l.MacAddress,
+                      ca => ca.Mac,
+                      (l, ca) => new { l, ca })
+                .Where(x => x.l.ApearDate >= startDate && x.l.ApearDate <= endDate)
+                .GroupBy(x => x.ca.CompanyName)
+                .Select(g => new
+                {
+                    CompanyName = g.Key,
+                    DeviceCount = g.Select(x => x.l.MacAddress).Distinct().Count()
+                })
+                .ToList();
+
+            var today = startDate.Value;
+            var month = new DateTime(today.Year, today.Month, 1);
+            var first = month.AddMonths(-1);
+
+            var outdatedLicenses = await _mainCtx.License
+                .CountAsync(oft => oft.ExpirationDate <= month);
 
             var activatedKeys = await _mainCtx.LicenseKey
                 .CountAsync(ak => ak.ActivatedDate >= startDate && ak.ActivatedDate <= endDate);
@@ -166,6 +184,7 @@ namespace ServerAPI.Controllers
                 NewFreeTrials = newFreeTrials,
                 NewAuthUsers = newAuthUsers,
                 NewCompanies = newCompanies,
+                OutdatedLicenses = outdatedLicenses,
                 ActivatedKeys = activatedKeys,
                 TotalPayment = totalPayment
             };
