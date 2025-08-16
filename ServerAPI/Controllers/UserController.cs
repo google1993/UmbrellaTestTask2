@@ -25,25 +25,27 @@ namespace ServerAPI.Controllers
                     u.Login,
 
                     u.EMail,
-                
+
                     //LicenseCount = _mainCtx.License
                     //    .Count(l => l.User.Id == u.Id),
-                
+
                     LicenseKeysCount = _mainCtx.LicenseKey
                         .Count(k => k.License.User.Id == u.Id),
-                
+
                     Devices = _mainCtx.License
                         .Count(d => d.User.Id == u.Id),
 
-                    Companies = (from l in _mainCtx.License
-                                 join ca in _mainCtx.UserCompanyActivation
-                                     on l.MacAddress equals ca.Mac
-                                 where l.User.Id == u.Id
-                                 select new
-                                 {
-                                     ca.CompanyName,
-                                     l.MacAddress
-                                 }).ToList(),
+                    Company = _mainCtx.License
+                        .Join(_mainCtx.UserCompanyActivation,
+                        l => l.MacAddress,
+                        ca => ca.Mac,
+                        (l, ca) => new { l, ca })
+                        .Where(x => x.l.User.Id == u.Id)
+                        .Select(x => new
+                        {
+                            x.ca.CompanyName,
+                            x.l.MacAddress
+                        }).ToList(),
 
                     TotalPayments = _mainCtx.Payments
                         .Where(p => p.TgUsername == u.Login)
