@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 
-namespace ServerAPI.DB.Response
+namespace ServerAPI.Models.Response
 {
     public class ErrorPieChartResponse
     {
-        public string Version { get; set; } = String.Empty;
+        public string Version { get; set; } = string.Empty;
         public int ErrorsCount { get; set; }
     }
 }

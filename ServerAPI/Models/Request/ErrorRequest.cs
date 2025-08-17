@@ -1,8 +1,7 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using YamlDotNet.Serialization;
 
-namespace ServerAPI.DB.Request
+namespace ServerAPI.Models.Request
 {
     public class ErrorsGetRequest
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServerAPI.DB;
-using ServerAPI.DB.Request;
-using ServerAPI.DB.Response;
+using ServerAPI.Models.Request;
+using ServerAPI.Models.Response;
 using System.Text.Json;
 
 namespace ServerAPI.Controllers
