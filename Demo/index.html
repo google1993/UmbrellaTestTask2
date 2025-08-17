@@ -66,6 +66,49 @@
     </div>
     <div class="report-section">
       <span class="report-title">Отчет по ошибкам</span>
+      <span>от:</span>
+      <select id="startMonth">
+        <option value="0">Январь</option>
+        <option value="1">Февраль</option>
+        <option value="2">Март</option>
+        <option value="3">Апрель</option>
+        <option value="4">Май</option>
+        <option value="5">Июнь</option>
+        <option value="6">Июль</option>
+        <option value="7">Август</option>
+        <option value="8">Сентябрь</option>
+        <option value="9">Октябрь</option>
+        <option value="10">Ноябрь</option>
+        <option value="11">Декабрь</option>
+      </select>
+
+      <select id="startYear">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+      </select>
+      <span>до:</span>
+      <select id="endMonth">
+        <option value="0">Январь</option>
+        <option value="1">Февраль</option>
+        <option value="2">Март</option>
+        <option value="3">Апрель</option>
+        <option value="4">Май</option>
+        <option value="5">Июнь</option>
+        <option value="6">Июль</option>
+        <option value="7">Август</option>
+        <option value="8">Сентябрь</option>
+        <option value="9">Октябрь</option>
+        <option value="10">Ноябрь</option>
+        <option value="11">Декабрь</option>
+      </select>
+
+      <select id="endYear">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+      </select>
+
       <button class="button" onclick="generateReport('errors', 'html')">
         HTML
       </button>
@@ -116,6 +159,18 @@
           report.regData("main-stats", "main-stats", dataSet);
           report.render();
         } else if (reportType === "errors") {
+          const startMonth = parseInt(document.getElementById("startMonth").value);
+          const startYear = parseInt(document.getElementById("startYear").value);
+
+          const endMonth = parseInt(document.getElementById("endMonth").value);
+          const endYear = parseInt(document.getElementById("endYear").value);
+          
+          const startDate = new Date(startYear, startMonth, 1);
+          const endDate = new Date(endYear, endMonth + 1, 0);
+
+          const isoStartDate = startDate.toISOString();
+          const isoEndDate = endDate.toISOString();
+
           report.loadFile("./reports/Report2.mrt");
 
           var reportData = {};
@@ -123,7 +178,10 @@
             var response = await fetch(api + "/error/get_list_errors_pie", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({}),
+              body: JSON.stringify({
+                StartDate: isoStartDate,
+                EndDate: isoEndDate
+              }),
             });
             if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -134,7 +192,10 @@
             var response = await fetch(api + "/error/get_list_error", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({}),
+              body: JSON.stringify({
+                StartDate: isoStartDate,
+                EndDate: isoEndDate
+              }),
             });
             if (!response.ok) {
               throw new Error("Network response was not ok");
