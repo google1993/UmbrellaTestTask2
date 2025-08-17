@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Отчеты</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .report-section {
+        margin-bottom: 20px;
+      }
+      .report-title {
+        font-weight: bold;
+      }
+      .button {
+        margin-left: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      #info-block {
+        border: 1px solid #ccc;
+        padding: 10px;
+        min-height: 100px;
+        margin-top: 20px;
+      }
+    </style>
+    <!-- Stimulsoft Reports.JS -->
+    <script
+      src="./Scripts/stimulsoft.reports.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="./Scripts/stimulsoft.viewer.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="./Scripts/stimulsoft.designer.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="./Scripts/stimulsoft.blockly.editor.js"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body>
+    <div class="report-section">
+      <span class="report-title">Тестовый отчет</span>
+      <button class="button" onclick="generateReport('test', 'html')">
+        HTML
+      </button>
+      <button class="button" onclick="generateReport('test', 'pdf')">
+        PDF
+      </button>
+    </div>
+    <div class="report-section">
+      <span class="report-title">Отчет по клиентам</span>
+      <button class="button" onclick="generateReport('clients', 'html')">
+        HTML
+      </button>
+      <button class="button" onclick="generateReport('clients', 'pdf')">
+        PDF
+      </button>
+    </div>
+    <div class="report-section">
+      <span class="report-title">Отчет по ошибкам</span>
+      <span>от:</span>
+      <select id="startMonth">
+        <option value="0">Январь</option>
+        <option value="1">Февраль</option>
+        <option value="2">Март</option>
+        <option value="3">Апрель</option>
+        <option value="4">Май</option>
+        <option value="5">Июнь</option>
+        <option value="6">Июль</option>
+        <option value="7">Август</option>
+        <option value="8">Сентябрь</option>
+        <option value="9">Октябрь</option>
+        <option value="10">Ноябрь</option>
+        <option value="11">Декабрь</option>
+      </select>
+
+      <select id="startYear">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+      </select>
+      <span>до:</span>
+      <select id="endMonth">
+        <option value="0">Январь</option>
+        <option value="1">Февраль</option>
+        <option value="2">Март</option>
+        <option value="3">Апрель</option>
+        <option value="4">Май</option>
+        <option value="5">Июнь</option>
+        <option value="6">Июль</option>
+        <option value="7">Август</option>
+        <option value="8">Сентябрь</option>
+        <option value="9">Октябрь</option>
+        <option value="10">Ноябрь</option>
+        <option value="11">Декабрь</option>
+      </select>
+
+      <select id="endYear">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+      </select>
+
+      <button class="button" onclick="generateReport('errors', 'html')">
+        HTML
+      </button>
+      <button class="button" onclick="generateReport('errors', 'pdf')">
+        PDF
+      </button>
+    </div>
+
+    <div id="info-block"></div>
+    <script>
+      async function generateReport(reportType, format) {
+        const api = "http://127.0.0.1:5000";
+        var report = new Stimulsoft.Report.StiReport();
+        if (reportType === "test") {
+          report.loadFile("./reports/SimpleList.mrt");
+          const response = await fetch(api + "/users/auth-users-stats", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({}),
+          });
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          var responseData = {
+            Users: await response.json(),
+          };
+
+          var dataSet = new Stimulsoft.System.Data.DataSet("Demo");
+          dataSet.readJson(JSON.stringify(responseData));
+          report.dictionary.databases.clear();
+          report.regData("Demo", "Demo", dataSet);
+          report.render();
+        } else if (reportType === "clients") {
+          report.loadFile("./reports/main-stat-report.mrt");
+          const response = await fetch(api + "/users/main-stats", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({}),
+          });
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          var responseData = await response.json();
+
+          var dataSet = new Stimulsoft.System.Data.DataSet("main-stats");
+          dataSet.readJson(JSON.stringify(responseData));
+          report.dictionary.databases.clear();
+          report.regData("main-stats", "main-stats", dataSet);
+          report.render();
+        } else if (reportType === "errors") {
+          const startMonth = parseInt(document.getElementById("startMonth").value);
+          const startYear = parseInt(document.getElementById("startYear").value);
+
+          const endMonth = parseInt(document.getElementById("endMonth").value);
+          const endYear = parseInt(document.getElementById("endYear").value);
+          
+          const startDate = new Date(startYear, startMonth, 1);
+          const endDate = new Date(endYear, endMonth + 1, 0);
+
+          const isoStartDate = startDate.toISOString();
+          const isoEndDate = endDate.toISOString();
+
+          report.loadFile("./reports/Report2.mrt");
+
+          var reportData = {};
+          {
+            var response = await fetch(api + "/error/get_list_errors_pie", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                StartDate: isoStartDate,
+                EndDate: isoEndDate
+              }),
+            });
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            reportData.pie_char = await response.json();
+          }
+          {
+            var response = await fetch(api + "/error/get_list_error", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                StartDate: isoStartDate,
+                EndDate: isoEndDate
+              }),
+            });
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            reportData.errors = await response.json();
+          }
+
+          var dataSet = new Stimulsoft.System.Data.DataSet("error-stat");
+          dataSet.readJson(JSON.stringify(reportData));
+          report.dictionary.databases.clear();
+          report.regData("error-stat", "error-stat", dataSet);
+          report.render();
+        } else {
+          return;
+        }
+
+        //ShowReport
+        {
+          report.exportDocumentAsync(function (htmlString) {
+            var container = document.getElementById("info-block");
+            container.innerHTML = htmlString;
+          }, Stimulsoft.Report.StiExportFormat.Html);
+        }
+
+        //SaveHTML
+        if (format === "html") {
+          report.exportDocumentAsync(function (htmlString) {
+            var fileName = report.reportAlias;
+            Stimulsoft.System.StiObject.saveAs(
+              htmlString,
+              fileName + ".html",
+              "text/html;charset=utf-8"
+            );
+          }, Stimulsoft.Report.StiExportFormat.Html);
+        } else if (format === "pdf") {
+          report.exportDocumentAsync(function (pdfData) {
+            var fileName = report.reportAlias;
+            Stimulsoft.System.StiObject.saveAs(
+              pdfData,
+              fileName + ".pdf",
+              "application/pdf"
+            );
+          }, Stimulsoft.Report.StiExportFormat.Pdf);
+        }
+      }
+    </script>
+  </body>
+</html>
