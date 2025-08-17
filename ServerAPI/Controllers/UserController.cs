@@ -48,7 +48,7 @@ namespace ServerAPI.Controllers
                         }).ToList(),
 
                     TotalPayments = _mainCtx.Payments
-                        .Where(p => p.TgUsername == u.Login)
+                        .Where(p => Convert.ToInt32(p.ChatId) == u.ChatId)
                         .Sum(p => (decimal?)p.Amount) ?? 0
                 }).ToListAsync();
 
@@ -89,7 +89,8 @@ namespace ServerAPI.Controllers
             var freeTrials = await _mainCtx.License
                 .CountAsync(ft => ft.User == null);
 
-            var authUsers = await _mainCtx.Users
+            var authUsers = await _mainCtx.License
+                .Where(l => l.User != null)
                 .CountAsync();
 
             var companies = await _mainCtx.UserCompanyActivation
@@ -146,9 +147,7 @@ namespace ServerAPI.Controllers
                 .CountAsync(ft => ft.User == null && (ft.ApearDate >= startDate && ft.ApearDate <= endDate));
             
             var newAuthUsers = await _mainCtx.License
-                .Where(l => l.User != null && l.ApearDate >= startDate && l.ApearDate <= endDate)
-                .Select(l => l.User)
-                .Distinct()             
+                .Where(l => l.User != null && l.ApearDate >= startDate && l.ApearDate <= endDate)     
                 .CountAsync();
 
             var newCompanies = _mainCtx.License
