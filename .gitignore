@@ -55,3 +55,11 @@ nunit-*.xml
 
 # Visual Studio folder
 .vs/
+
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
+/.vs/UmbrellaTestTask2/DesignTimeBuild
+/.vs/UmbrellaTestTask2/FileContentIndex
