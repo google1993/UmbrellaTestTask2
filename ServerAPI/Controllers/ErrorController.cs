@@ -102,7 +102,7 @@ namespace ServerAPI.Controllers
                 .GroupBy(e => e.Version)
                 .Select(g => new ErrorPieChartResponse
                 {
-                    Version = g.Key,
+                    Version = (g.Key).Substring(0,8),
                     ErrorsCount = g.Count()
                 }).ToListAsync();
             return Ok(new
