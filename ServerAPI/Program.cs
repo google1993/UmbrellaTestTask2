@@ -53,7 +53,10 @@ namespace ServerAPI
                 app.UseSwaggerUi();
             }
 
-            app.UseCors();
+            app.UseCors(policy => policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
             app.UseAuthorization();
             app.MapControllers();
             app.Run();

@@ -21,8 +21,6 @@
           <value>eMail,System.String</value>
           <value>licenseKeysCount,System.Int32</value>
           <value>devices,System.Int32</value>
-          <value>totalPayments,System.Decimal</value>
-          <value>companies,System.Object</value>
         </Columns>
         <Dictionary isRef="1" />
         <Key>d55644ed5e5341a1b200709e7eade78a</Key>
@@ -372,7 +370,7 @@
               <Name>Text8</Name>
               <Page isRef="4" />
               <Parent isRef="18" />
-              <Text>{IIF(Users.companies.Count > 0, Users.companies[0].companyName, "")}</Text>
+
               <TextBrush>[64:64:64]</TextBrush>
               <TextOptions>,,,Trimming=Character,,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
@@ -391,7 +389,6 @@
               <Name>Text9</Name>
               <Page isRef="4" />
               <Parent isRef="18" />
-              <Text>{IIF(Users.companies.Count > 0, Users.companies[0].macAddress, "")}</Text>
               <TextBrush>[64:64:64]</TextBrush>
               <TextOptions>,,,Trimming=Character,,A=0</TextOptions>
               <VertAlignment>Center</VertAlignment>
@@ -434,7 +431,7 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>User Data Report</ReportAlias>
-  <ReportAuthor>Demo</ReportAuthor>
+  <ReportAuthor>Custom Report</ReportAuthor>
   <ReportChanged>1/14/2025 11:10:35 AM</ReportChanged>
   <ReportCreated>5/29/2004 10:59:00 AM</ReportCreated>
   <ReportDescription>Отчет пользовательских данных</ReportDescription>
