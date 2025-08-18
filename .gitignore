@@ -53,13 +53,5 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 
-# Visual Studio folder
+# Visual studio
 .vs/
-
-node_modules/
-dist/
-build/
-*.log
-.DS_Store
-/.vs/UmbrellaTestTask2/DesignTimeBuild
-/.vs/UmbrellaTestTask2/FileContentIndex
