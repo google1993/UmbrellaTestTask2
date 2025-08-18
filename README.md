@@ -6,9 +6,11 @@
 2. JS
 3. Bootstrap
 4. Stimulsoft
+
 **API**
 1. C#
 2. EntityFramework
+
 **БД**
 1. MySQL
 ----
