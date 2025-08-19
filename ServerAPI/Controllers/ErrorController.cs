@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ServerAPI.DB;
 using ServerAPI.Models.Request;
 using ServerAPI.Models.Response;
+using System.Linq;
 using System.Text.Json;
 
 namespace ServerAPI.Controllers
@@ -33,8 +34,10 @@ namespace ServerAPI.Controllers
 
             var errorsQuery = _context.Errors.AsQueryable();
             var results = await errorsQuery
-                .Select(ErrorResponse.ErrorResponseExpression)
-                .FirstOrDefaultAsync();
+                .Where(e => e.ErrorGUID == request.ErrorGUID)
+                .Select(ErrorResponse.ErrorResponseExpression).ToListAsync();
+                
+                
             return Ok(new
             {
                 resultData = results
