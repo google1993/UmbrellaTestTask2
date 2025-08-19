@@ -36,21 +36,21 @@
       </div>
       <div class="tab-content mt-3">
         <div class="tab-pane fade" id="tests" role="tabpanel">
-          <div style="display: none;" hx-post="http://127.0.0.1:5000/users/auth-users-stats" hx-trigger="load-tests-report from:body" hx-target="#reportResult" hx-swap="innerHTML"></div>
+          <div style="display: none;" hx-post="api/users/auth-users-stats" hx-trigger="load-tests-report from:body" hx-target="#reportResult" hx-swap="innerHTML"></div>
         </div>
         <div class="tab-pane fade show active" id="users" role="tabpanel">
-          <div style="display: none;" hx-post="http://127.0.0.1:5000/users/main-stats" hx-trigger="load-users-report from:body" hx-target="#reportResult" hx-swap="innerHTML"></div>
+          <div style="display: none;" hx-post="api/users/main-stats" hx-trigger="load-users-report from:body" hx-target="#reportResult" hx-swap="innerHTML"></div>
         </div>
         <div class="tab-pane fade" id="errors" role="tabpanel">
           <form id="errorsForm">
             <div class="row mb-3">
               <div class="col">
-                <label class="form-label">От месяца</label>
-                <input type="month" name="monthFrom" class="form-control" required>
+                <label class="form-label">От числа</label>
+                <input type="date" name="monthFrom" class="form-control" required>
               </div>
               <div class="col">
-                <label class="form-label">До месяца</label>
-                <input type="month" name="monthTo" class="form-control" required>
+                <label class="form-label">До числа</label>
+                <input type="date" name="monthTo" class="form-control" required>
               </div>
             </div>
             <button type="submit" class="btn btn-primary">Сформировать</button>

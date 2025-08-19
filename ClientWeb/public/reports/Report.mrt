@@ -70,12 +70,193 @@
     <Page1 Ref="6" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="4">
-        <ReportTitle Ref="7" type="ReportTitleBand" isKey="true">
+      <Components isList="true" count="7">
+        <devices Ref="7" type="Stimulsoft.Report.Chart.StiChart" isKey="true">
+          <Area Ref="8" type="Stimulsoft.Report.Chart.StiPieArea" isKey="true">
+            <BorderColor>Transparent</BorderColor>
+            <BorderThickness>1</BorderThickness>
+            <Brush>[255:255:255]</Brush>
+            <Chart isRef="7" />
+          </Area>
+          <Brush>[255:255:255]</Brush>
+          <ClientRectangle>1.4,6.4,6,5.6</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <ConstantLines isList="true" count="0" />
+          <CustomStyleName />
+          <DataRelationName isNull="true" />
+          <DataSourceName>root</DataSourceName>
+          <EditorType>Simple</EditorType>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="36" />
+          <Name>devices</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Series isList="true" count="1">
+            <Item7 Ref="9" type="Stimulsoft.Report.Chart.StiPieSeries" isKey="true">
+              <ArgumentDataColumn>root_company.macAddress</ArgumentDataColumn>
+              <BorderColor>Transparent</BorderColor>
+              <Brush>[52:152:219]</Brush>
+              <Chart isRef="7" />
+              <Conditions isList="true" count="0" />
+              <Filters isList="true" count="0" />
+              <Lighting>False</Lighting>
+              <SeriesLabels Ref="10" type="Stimulsoft.Report.Chart.StiNoneLabels" isKey="true">
+                <Chart isRef="7" />
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+                <Width>0</Width>
+              </SeriesLabels>
+              <ShowInLegend>False</ShowInLegend>
+              <ShowShadow>False</ShowShadow>
+              <Title>Ряд 1</Title>
+              <ValueDataColumn>root.devices</ValueDataColumn>
+            </Item7>
+          </Series>
+          <SeriesLabels Ref="11" type="Stimulsoft.Report.Chart.StiInsideEndPieLabels" isKey="true">
+            <BorderColor>Transparent</BorderColor>
+            <Brush>[119:255:255:255]</Brush>
+            <Chart isRef="7" />
+            <Font>Arial,10</Font>
+            <LabelColor>50, 58, 69</LabelColor>
+            <MarkerSize>8, 6</MarkerSize>
+            <ValueTypeSeparator>-</ValueTypeSeparator>
+            <Width>0</Width>
+          </SeriesLabels>
+          <SeriesLabelsConditions isList="true" count="0" />
+          <Sort isList="true" count="0" />
+          <Strips isList="true" count="0" />
+          <Style Ref="12" type="Stimulsoft.Report.Chart.StiStyle29" isKey="true">
+            <Conditions isList="true" count="0" />
+            <Name />
+          </Style>
+        </devices>
+        <Text1 Ref="13" type="Text" isKey="true">
+          <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0.2,5.8,8.4,0.6</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Font>Arial,12,Bold</Font>
+          <Name>Text1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Text>Колличество устройств у пользователя</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text1>
+        <Chart1 Ref="14" type="Stimulsoft.Report.Chart.StiChart" isKey="true">
+          <Area Ref="15" type="Stimulsoft.Report.Chart.StiClusteredBarArea" isKey="true">
+            <BorderColor>Transparent</BorderColor>
+            <BorderThickness>1</BorderThickness>
+            <Brush>[255:255:255]</Brush>
+            <Chart isRef="14" />
+            <GridLinesHorRight Ref="16" type="Stimulsoft.Report.Chart.StiGridLinesHor" isKey="true">
+              <Area isRef="15" />
+              <Color>Silver</Color>
+              <MinorColor>Gainsboro</MinorColor>
+              <Visible>False</Visible>
+            </GridLinesHorRight>
+            <YAxis Ref="17" type="Stimulsoft.Report.Chart.StiYLeftAxis" isKey="true">
+              <Area isRef="15" />
+              <LineColor>140, 140, 140</LineColor>
+              <Title Ref="18" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                <Color>140, 140, 140</Color>
+                <Direction>BottomToTop</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YAxis>
+            <YRightAxis Ref="19" type="Stimulsoft.Report.Chart.StiYRightAxis" isKey="true">
+              <Area isRef="15" />
+              <Labels Ref="20" type="Stimulsoft.Report.Chart.StiAxisLabels" isKey="true">
+                <Axis isRef="19" />
+                <Color>140, 140, 140</Color>
+                <Font>Tahoma,8</Font>
+                <TextAlignment>Left</TextAlignment>
+              </Labels>
+              <LineColor>140, 140, 140</LineColor>
+              <Title Ref="21" type="Stimulsoft.Report.Chart.StiAxisTitle" isKey="true">
+                <Color>140, 140, 140</Color>
+                <Direction>TopToBottom</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YRightAxis>
+          </Area>
+          <Brush>[255:255:255]</Brush>
+          <ClientRectangle>8.6,6.6,10.2,5.4</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <ConstantLines isList="true" count="0" />
+          <CustomStyleName />
+          <EditorType>Simple</EditorType>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Name>Chart1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Series isList="true" count="1">
+            <Item10 Ref="22" type="Stimulsoft.Report.Chart.StiClusteredBarSeries" isKey="true">
+              <ArgumentDataColumn>root_company.companyName</ArgumentDataColumn>
+              <BorderColor>Transparent</BorderColor>
+              <Brush>[52:152:219]</Brush>
+              <BrushNegative>Firebrick</BrushNegative>
+              <Chart isRef="14" />
+              <Conditions isList="true" count="0" />
+              <Filters isList="true" count="0" />
+              <SeriesLabels Ref="23" type="Stimulsoft.Report.Chart.StiCenterAxisLabels" isKey="true">
+                <BorderColor>Transparent</BorderColor>
+                <Brush>[119:255:255:255]</Brush>
+                <Chart isRef="14" />
+                <Font>Arial,10</Font>
+                <LabelColor>50, 58, 69</LabelColor>
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+                <Width>0</Width>
+              </SeriesLabels>
+              <ShowShadow>False</ShowShadow>
+              <Title>Ряд 1</Title>
+              <TrendLines isList="true" count="0" />
+              <ValueDataColumn>root.totalPayments</ValueDataColumn>
+            </Item10>
+          </Series>
+          <SeriesLabels Ref="24" type="Stimulsoft.Report.Chart.StiCenterAxisLabels" isKey="true">
+            <BorderColor>Transparent</BorderColor>
+            <Brush>[119:255:255:255]</Brush>
+            <Chart isRef="14" />
+            <Font>Arial,10</Font>
+            <LabelColor>50, 58, 69</LabelColor>
+            <MarkerSize>8, 6</MarkerSize>
+            <ValueTypeSeparator>-</ValueTypeSeparator>
+            <Width>0</Width>
+          </SeriesLabels>
+          <SeriesLabelsConditions isList="true" count="0" />
+          <Sort isList="true" count="0" />
+          <Strips isList="true" count="0" />
+          <Style Ref="25" type="Stimulsoft.Report.Chart.StiStyle29" isKey="true">
+            <Conditions isList="true" count="0" />
+            <Name />
+          </Style>
+        </Chart1>
+        <Text2 Ref="26" type="Text" isKey="true">
+          <Border>None;[0:0:0];1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>10.6,5.8,8.4,0.6</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Font>Arial,12,Bold</Font>
+          <Name>Text2</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Text>Заработок в каждой компании</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text2>
+        <ReportTitle Ref="27" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,19,1.4</ClientRectangle>
           <Components isList="true" count="1">
-            <ReportTitleText Ref="8" type="Text" isKey="true">
+            <ReportTitleText Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,19,1.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -85,7 +266,7 @@
               <HorAlignment>Center</HorAlignment>
               <Name>ReportTitleText</Name>
               <Page isRef="6" />
-              <Parent isRef="7" />
+              <Parent isRef="27" />
               <Text>Данные пользователей</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -98,104 +279,119 @@
           <Page isRef="6" />
           <Parent isRef="6" />
         </ReportTitle>
-        <Header Ref="9" type="HeaderBand" isKey="true">
+        <Header Ref="29" type="HeaderBand" isKey="true">
+          <Border>All;Black;3;Solid;False;4;Black;True</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,2.6,19,0.6</ClientRectangle>
           <Components isList="true" count="6">
-            <HeaderText1 Ref="10" type="Text" isKey="true">
+            <HeaderText1 Ref="30" type="Text" isKey="true">
+              <Border>None;[0:0:0];2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
+              <Font>Arial,12,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
               <Name>HeaderText1</Name>
               <Page isRef="6" />
-              <Parent isRef="9" />
-              <Text>login</Text>
+              <Parent isRef="29" />
+              <Text>Логин</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderText1>
-            <HeaderText2 Ref="11" type="Text" isKey="true">
+            <HeaderText2 Ref="31" type="Text" isKey="true">
+              <Border>None;[0:0:0];2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>3.2,0,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
+              <Font>Arial,12,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
               <Name>HeaderText2</Name>
               <Page isRef="6" />
-              <Parent isRef="9" />
-              <Text>eMail</Text>
+              <Parent isRef="29" />
+              <Text>Почта</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderText2>
-            <HeaderText3 Ref="12" type="Text" isKey="true">
+            <HeaderText3 Ref="32" type="Text" isKey="true">
+              <Border>None;[0:0:0];2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>6.4,0,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
+              <Font>Arial,12,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
               <Name>HeaderText3</Name>
               <Page isRef="6" />
-              <Parent isRef="9" />
-              <Text>licenseKeysCount</Text>
+              <Parent isRef="29" />
+              <Text>Кол-во ключей</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderText3>
-            <HeaderText4 Ref="13" type="Text" isKey="true">
+            <HeaderText4 Ref="33" type="Text" isKey="true">
+              <Border>None;[0:0:0];2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>9.6,0,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
+              <Font>Arial,12,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
               <Name>HeaderText4</Name>
               <Page isRef="6" />
-              <Parent isRef="9" />
-              <Text>devices</Text>
+              <Parent isRef="29" />
+              <Text>Кол-во
+устройств
+</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderText4>
-            <HeaderText5 Ref="14" type="Text" isKey="true">
+            <HeaderText5 Ref="34" type="Text" isKey="true">
+              <Border>None;[0:0:0];2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>12.8,0,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
+              <Font>Arial,12,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
               <Name>HeaderText5</Name>
               <Page isRef="6" />
-              <Parent isRef="9" />
-              <Text>company</Text>
+              <Parent isRef="29" />
+              <Text>Компания</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderText5>
-            <HeaderText6 Ref="15" type="Text" isKey="true">
+            <HeaderText6 Ref="35" type="Text" isKey="true">
+              <Border>None;[0:0:0];2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>16,0,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Arial,10,Bold</Font>
+              <Font>Arial,12,Bold</Font>
               <GrowToHeight>True</GrowToHeight>
               <Name>HeaderText6</Name>
               <Page isRef="6" />
-              <Parent isRef="9" />
-              <Text>totalPayments</Text>
+              <Parent isRef="29" />
+              <Text>Совершил платежей</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </HeaderText6>
           </Components>
@@ -205,12 +401,12 @@
           <Page isRef="6" />
           <Parent isRef="6" />
         </Header>
-        <Data Ref="16" type="DataBand" isKey="true">
+        <Data Ref="36" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,4,19,0.6</ClientRectangle>
           <Components isList="true" count="6">
-            <DataText1 Ref="17" type="Text" isKey="true">
+            <DataText1 Ref="37" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,0,3.2,0.6</ClientRectangle>
@@ -220,14 +416,14 @@
               <GrowToHeight>True</GrowToHeight>
               <Name>DataText1</Name>
               <Page isRef="6" />
-              <Parent isRef="16" />
+              <Parent isRef="36" />
               <Text>{root.login}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <TextQuality>Wysiwyg</TextQuality>
               <VertAlignment>Center</VertAlignment>
             </DataText1>
-            <DataText2 Ref="18" type="Text" isKey="true">
+            <DataText2 Ref="38" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>3.2,0,3.2,0.6</ClientRectangle>
@@ -237,14 +433,14 @@
               <GrowToHeight>True</GrowToHeight>
               <Name>DataText2</Name>
               <Page isRef="6" />
-              <Parent isRef="16" />
+              <Parent isRef="36" />
               <Text>{root.eMail}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <TextQuality>Wysiwyg</TextQuality>
               <VertAlignment>Center</VertAlignment>
             </DataText2>
-            <DataText3 Ref="19" type="Text" isKey="true">
+            <DataText3 Ref="39" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>6.4,0,3.2,0.6</ClientRectangle>
@@ -254,14 +450,14 @@
               <GrowToHeight>True</GrowToHeight>
               <Name>DataText3</Name>
               <Page isRef="6" />
-              <Parent isRef="16" />
+              <Parent isRef="36" />
               <Text>{root.licenseKeysCount}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <TextQuality>Wysiwyg</TextQuality>
               <VertAlignment>Center</VertAlignment>
             </DataText3>
-            <DataText4 Ref="20" type="Text" isKey="true">
+            <DataText4 Ref="40" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>9.6,0,3.2,0.6</ClientRectangle>
@@ -271,14 +467,14 @@
               <GrowToHeight>True</GrowToHeight>
               <Name>DataText4</Name>
               <Page isRef="6" />
-              <Parent isRef="16" />
+              <Parent isRef="36" />
               <Text>{root.devices}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <TextQuality>Wysiwyg</TextQuality>
               <VertAlignment>Center</VertAlignment>
             </DataText4>
-            <DataText5 Ref="21" type="Text" isKey="true">
+            <DataText5 Ref="41" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>12.8,0,3.2,0.6</ClientRectangle>
@@ -288,14 +484,14 @@
               <GrowToHeight>True</GrowToHeight>
               <Name>DataText5</Name>
               <Page isRef="6" />
-              <Parent isRef="16" />
+              <Parent isRef="36" />
               <Text>{root.company}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <TextQuality>Wysiwyg</TextQuality>
               <VertAlignment>Center</VertAlignment>
             </DataText5>
-            <DataText6 Ref="22" type="Text" isKey="true">
+            <DataText6 Ref="42" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>16,0,3.2,0.6</ClientRectangle>
@@ -305,7 +501,7 @@
               <GrowToHeight>True</GrowToHeight>
               <Name>DataText6</Name>
               <Page isRef="6" />
-              <Parent isRef="16" />
+              <Parent isRef="36" />
               <Text>{root.totalPayments}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
@@ -323,16 +519,6 @@
           <Parent isRef="6" />
           <Sort isList="true" count="0" />
         </Data>
-        <Footer Ref="23" type="FooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,5.4,19,0.6</ClientRectangle>
-          <Components isList="true" count="0" />
-          <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
-          <Name>Footer</Name>
-          <Page isRef="6" />
-          <Parent isRef="6" />
-        </Footer>
       </Components>
       <Conditions isList="true" count="0" />
       <Expressions isList="true" count="0" />
@@ -356,10 +542,10 @@
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
   <ReportAuthor>Иван К</ReportAuthor>
-  <ReportChanged>8/18/2025 10:21:54 AM</ReportChanged>
+  <ReportChanged>8/18/2025 8:47:05 PM</ReportChanged>
   <ReportCreated>8/18/2025 10:20:33 AM</ReportCreated>
   <ReportFile>C:\UmbrellaTestTask2\ClientWeb\public\reports\Report.mrt</ReportFile>
-  <ReportGuid>fc69a133829348f2834e7de4f7f4471d</ReportGuid>
+  <ReportGuid>4061f791fd724eab9181fb2b50392d76</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2025.3.3.0</ReportVersion>

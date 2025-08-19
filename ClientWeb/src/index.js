@@ -78,7 +78,7 @@ async function createReportFromData(data, containerId) {
 		report.dictionary.databases.clear();
 		report.regData(dataSetName, dataSetName, dataSet);
 
-		await report.renderAsync();
+		await report.renderAsync(() => {});
 
 		currentReport = report;
 
@@ -111,11 +111,8 @@ async function loadErrorsReport(startMonthStr, endMonthStr) {
         const reportResult = document.getElementById("reportResult");
         reportResult.innerHTML = '<div class="justify-content-center align-items-center d-flex"><div class="spinner-border" role="status"></div></div>';
 
-        const isoStartDate = new Date(startMonthStr + "-01").toISOString();
-        const endMonthDate = new Date(endMonthStr + "-01");
-        endMonthDate.setMonth(endMonthDate.getMonth() + 1);
-        endMonthDate.setDate(endMonthDate.getDate() - 1);
-        const isoEndDate = endMonthDate.toISOString();
+        const isoStartDate = new Date(startMonthStr).toISOString();
+        const isoEndDate = new Date(endMonthStr).toISOString();
 
         const reportData = {};
 
